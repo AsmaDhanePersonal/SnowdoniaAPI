@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  longitude=string: MyString
+  latitude=string: MyString
+  heading=integer: MyString
+  timestampofrecord=timestamp: MyString
+  vehicle_id=reference: MyString
+
+two:
+  longitude=string: MyString
+  latitude=string: MyString
+  heading=integer: MyString
+  timestampofrecord=timestamp: MyString
+  vehicle_id=reference: MyString

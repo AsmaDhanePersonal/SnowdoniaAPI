@@ -1,0 +1,18 @@
+#Create Vehicle
+
+curl -i -H "Accept: application/vnd.api+json" -H 'Content-Type:application/vnd.api+json' -X POST -d '{"data": {"type":"vehicles", "attributes":{"vtype":"Bus"}}}' http://localhost:3000/vehicles
+
+#Inject Position
+
+curl -i -H "Accept: application/vnd.api+json" -H 'Content-Type:application/vnd.api+json' -X POST -d '{ "data": { "type": "positions", "relationships": { "vehicle": { "data": { "type": "vehicles", "id": "7b96c12c-1d81-4ca3-b769-e15878174fea" } } }, "attributes": { "longitude": "41123", "latitude": "12123", "heading": "99", "timestampofrecord":"2016-12-10 15:26:10.051061" } } }' http://localhost:3000/positions
+
+
+#Parallel Testing
+
+seq 1000 | parallel -n0 -j1000 "curl -i -H \"Accept: application/vnd.api+json\" -H 'Content-Type:application/vnd.api+json' -X POST -d '{ \"data\": { \"type\": \"positions\", \"relationships\": { \"vehicle\": { \"data\": { \"type\": \"vehicles\", \"id\": \"7b96c12c-1d81-4ca3-b769-e15878174fea\" } } }, \"attributes\": { \"longitude\": \"41123\", \"latitude\": \"12123\", \"heading\": \"99\", \"timestampofrecord\":\"2016-12-10 15:26:10.051061\" } } }' http://localhost:3000/positions"
+
+
+#Inject Position within berlin
+
+curl -i -H "Accept: application/vnd.api+json" -H 'Content-Type:application/vnd.api+json' -X POST -d '{ "data": { "type": "positions", "relationships": { "vehicle": { "data": { "type": "vehicles", "id": "7b96c12c-1d81-4ca3-b769-e15878174fea" } } }, "attributes": { "longitude": "13.40", "latitude": "52.52", "heading": "99", "timestampofrecord":"2016-12-10 15:26:10.051061" } } }' http://localhost:3000/positions
+
